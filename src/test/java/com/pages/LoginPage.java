@@ -34,7 +34,7 @@ public class LoginPage extends BasePage {
 
     public MainPage loginAs(String username, String password) {
         login(username, password);
-        return new MainPage();
+        return new MainPage(context);
     }
 
     public String incorrectLoginAs(String username, String password) {

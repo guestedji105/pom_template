@@ -4,12 +4,13 @@ import com.pages.LoginPage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTests extends TestBase {
     @Test
     public void successLoginTest() {
-        new LoginPage(context).loginAsStandardUser();
-        assertEquals("https://www.saucedemo.com/inventory.html", context.driver.getCurrentUrl());
+        assertTrue(new LoginPage(context).loginAsStandardUser().getFooterText().contains("Sauce Labs"));
+        //assertEquals("https://www.saucedemo.com/inventory.html", context.driver.getCurrentUrl());
     }
 
     @Test

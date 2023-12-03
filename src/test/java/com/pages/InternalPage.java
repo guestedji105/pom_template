@@ -11,6 +11,9 @@ public class InternalPage extends BasePage{
     @FindBy(css = ".shopping_cart_link")
     public WebElement shoppingCartLink;
 
+    @FindBy(xpath = "//div[@id='shopping_cart_container']//span")
+    public WebElement numberItemsCart;
+
     InternalPage(TestContext context) {
         super(context);
     }
@@ -26,5 +29,9 @@ public class InternalPage extends BasePage{
 
     public int getShoppingCartItemsAmount() {
         return shoppingCartLink.getText().length() > 0 ? Integer.parseInt(shoppingCartLink.getText()) : 0;
+    }
+
+    public String numberOfItemsInTheCart (){
+        return numberItemsCart.getText();
     }
 }

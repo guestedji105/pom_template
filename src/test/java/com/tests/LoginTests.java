@@ -1,10 +1,9 @@
 package com.tests;
-
 import com.pages.LoginPage;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.openqa.selenium.WebElement;
 
 public class LoginTests extends TestBase {
     @Test

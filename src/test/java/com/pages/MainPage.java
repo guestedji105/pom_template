@@ -10,9 +10,8 @@ public class MainPage extends InternalPage {
     @FindBy(css = ".btn_inventory")
     public List<WebElement> addToCartButtons;
 
-    @FindBy(id = "item_5_title_link")
-    public WebElement productPageJacket;
-
+    @FindBy(xpath = "//a[contains(@id,'title_link')]//*[@class='inventory_item_name ']")
+    public List<WebElement> productNamePages;
 
     public MainPage(TestContext context) {
         super(context);
@@ -23,15 +22,13 @@ public class MainPage extends InternalPage {
         return this;
     }
 
-    public JacketPage goToPageJacket() {
-        productPageJacket.click();
-        return new JacketPage(context);
+    public ProductPage goToProductPage(String nameProduct) {
+        for (WebElement product : productNamePages) {
+            if (product.getText().equals(nameProduct)) {
+                product.click();
+                break;
+            }
+        }
+        return new ProductPage(context);
     }
-
-    public MainPage addToCartByIndex(int index) {
-        addToCartButtons.get(index).click();
-        return this;
-    }
-
-
 }

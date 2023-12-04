@@ -21,7 +21,7 @@ public class MainPage extends InternalPage {
         addToCartButtons.forEach(WebElement::click);
         return this;
     }
-    public ProductPage goToProductPage(String nameProduct) {
+    public ProductPage goToProductsPage(String nameProduct) {
         for (WebElement product : productName) {
             if (product.getText().equals(nameProduct)) {
                 product.click();

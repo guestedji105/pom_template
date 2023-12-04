@@ -20,7 +20,7 @@ public class MainPageTests extends TestBase {
         assertEquals("$49.99",
                 new LoginPage(context)
                     .loginAsStandardUser()
-                    .goToProductPage("Sauce Labs Fleece Jacket")
+                    .goToProductsPage("Sauce Labs Fleece Jacket")
                     .priceProductText()
         );
     }
@@ -31,7 +31,7 @@ public class MainPageTests extends TestBase {
                 1,
                 new LoginPage(context)
                     .loginAsStandardUser()
-                    .goToProductPage("Sauce Labs Fleece Jacket")
+                    .goToProductsPage("Sauce Labs Fleece Jacket")
                     .addProductToCart()
                     .getShoppingCartItemsAmount()
         );

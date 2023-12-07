@@ -10,7 +10,10 @@ public class MainPageTests extends TestBase {
     public void testAddItemsToCart() {
         assertEquals(
                 6,
-                new LoginPage(context).loginAsStandardUser().clickAllAddToCartButtons().getShoppingCartItemsAmount()
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .clickAllAddToCartButtons()
+                        .getShoppingCartItemsAmount()
         );
     }
 
@@ -18,10 +21,10 @@ public class MainPageTests extends TestBase {
     public void testGoToPageJacket() {
         assertEquals(
                 "$49.99",
-                new LoginPage(context).
-                        loginAsStandardUser().
-                        goToProductPage("Sauce Labs Fleece Jacket").
-                        priceProductText()
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .goToProductPage("Sauce Labs Fleece Jacket")
+                        .priceProductText()
         );
     }
 
@@ -29,12 +32,34 @@ public class MainPageTests extends TestBase {
     public void shoppingCartQuantity() {
         assertEquals(
                 1,
-                new LoginPage(context).
-                        loginAsStandardUser().
-                        goToProductPage("Sauce Labs Fleece Jacket").
-                        addProductToCart().
-                        getShoppingCartItemsAmount()
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .goToProductPage("Sauce Labs Fleece Jacket")
+                        .addProductToCart()
+                        .getShoppingCartItemsAmount()
 
+        );
+    }
+
+    @Test
+    public void goFromProductPageToMainPage() {
+        assertEquals(
+                6,
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .goToProductPage("Sauce Labs Fleece Jacket")
+                        .goToMainPage().numberProductsOnMainPage()
+        );
+    }
+
+    @Test
+    public void goToLoginPage() {
+        assertEquals(
+                "Username",
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .goToLoginPage()
+                        .getUsernamePlaceholderText()
         );
     }
 }

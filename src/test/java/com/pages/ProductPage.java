@@ -4,8 +4,8 @@ import com.context.TestContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProductPage extends InternalPage{
-    ProductPage(TestContext context){
+public class ProductPage extends InternalPage {
+    ProductPage(TestContext context) {
         super(context);
     }
 
@@ -16,15 +16,15 @@ public class ProductPage extends InternalPage{
     public WebElement buttonAddToCart;
 
 
-    public String priceProductText(){
+    public String priceProductText() {
         return productPrice.getText();
     }
 
-    public ProductPage addProductToCart(){
-        if (!buttonAddToCart.getText().equals("Remove")){
+    public ProductPage addProductToCart() {
+        if (!buttonAddToCart.getText().equals("Remove")) {
             buttonAddToCart.click();
         } else {
-        System.out.println("Product has already been added to cart");
+            System.out.println("Product has already been added to cart");
         }
         return new ProductPage(context);
     }

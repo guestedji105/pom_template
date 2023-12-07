@@ -17,7 +17,7 @@ public class LoginTests extends TestBase {
     public void emptyLoginTest() {
         assertEquals(
                 "Epic sadface: Username is required",
-                new LoginPage(context).incorrectLoginAs("","")
+                new LoginPage(context).incorrectLoginAs("", "")
         );
     }
 
@@ -25,7 +25,7 @@ public class LoginTests extends TestBase {
     public void blockedUserLoginTest() {
         assertEquals(
                 "Epic sadface: Sorry, this user has been locked out.",
-                new LoginPage(context).incorrectLoginAs("locked_out_user","secret_sauce")
+                new LoginPage(context).incorrectLoginAs("locked_out_user", "secret_sauce")
         );
     }
 }

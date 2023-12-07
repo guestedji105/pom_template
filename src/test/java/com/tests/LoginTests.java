@@ -27,7 +27,7 @@ public class LoginTests extends TestBase {
     public void emptyLoginTest() {
         assertEquals(
                 "Epic sadface: Username is required",
-                new LoginPage(context).incorrectLoginAs("","")
+                new LoginPage(context).incorrectLoginAs("", "")
         );
         logs.append("Something we want to add from test");
     }

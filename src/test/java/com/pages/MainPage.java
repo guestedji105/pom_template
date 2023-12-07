@@ -31,4 +31,8 @@ public class MainPage extends InternalPage {
         }
         return new ProductPage(context);
     }
+
+    public int numberProductsOnMainPage() {
+        return addToCartButtons.size();
+    }
 }

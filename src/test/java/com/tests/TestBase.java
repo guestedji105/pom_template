@@ -3,6 +3,7 @@ package com.tests;
 import com.context.TestContext;
 import com.utils.ConfigurationReader;
 import com.utils.DriverFactory;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +14,7 @@ import java.time.Duration;
 
 public class TestBase {
     TestContext context;
-
+    StringBuilder logs;
     @BeforeEach
     public void beforeMethod() {
         context = new TestContext();
@@ -22,10 +23,12 @@ public class TestBase {
         context.actions = new Actions(context.driver);
         context.js = (JavascriptExecutor) context.driver;
         context.driver.get(ConfigurationReader.get("base_url"));
+        logs = new StringBuilder();
     }
 
     @AfterEach
     public void afterMethod() {
+        Allure.addAttachment("Console log: ", String.valueOf(logs));
         if (context.driver != null) {
             context.driver.quit();
         }

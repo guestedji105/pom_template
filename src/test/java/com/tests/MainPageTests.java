@@ -10,7 +10,10 @@ public class MainPageTests extends TestBase {
     public void testAddItemsToCart() {
         assertEquals(
                 6,
-                new LoginPage(context).loginAsStandardUser().clickAllAddToCartButtons().getShoppingCartItemsAmount()
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .clickAllAddToCartButtons()
+                        .getShoppingCartItemsAmount()
         );
     }
 }

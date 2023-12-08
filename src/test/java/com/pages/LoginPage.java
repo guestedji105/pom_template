@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     @FindBy(css = "#login-button")
     public WebElement loginButton;
 
-    public LoginPage(TestContext context){
+    public LoginPage(TestContext context) {
         super(context);
     }
 

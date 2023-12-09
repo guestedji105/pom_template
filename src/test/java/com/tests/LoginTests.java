@@ -9,7 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginTests extends TestBase {
     @Test
     public void successLoginTest() {
-        assertTrue(new LoginPage(context).loginAsStandardUser().getFooterText().contains("Sauce Labs"));
+        assertTrue(new LoginPage(context)
+                .loginAsStandardUser()
+                .internalPageComponentCart
+                .getFooterText()
+                .contains("Sauce Labs"));
         //assertEquals("https://www.saucedemo.com/inventory.html", context.driver.getCurrentUrl());
     }
 
@@ -17,7 +21,8 @@ public class LoginTests extends TestBase {
     public void emptyLoginTest() {
         assertEquals(
                 "Epic sadface: Username is required",
-                new LoginPage(context).incorrectLoginAs("", "")
+                new LoginPage(context)
+                        .incorrectLoginAs("", "")
         );
     }
 

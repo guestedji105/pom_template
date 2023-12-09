@@ -5,15 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class InternalPage extends BasePage {
+public class InternalPageComponentBurgerMenu extends BasePage {
 
     //TestContext context;
-    @FindBy(css = ".footer_copy")
-    public WebElement footer;
-
-    @FindBy(css = ".shopping_cart_link")
-    public WebElement shoppingCartLink;
-
     @FindBy(id = "react-burger-menu-btn")
     public WebElement burgerMenu;
 
@@ -24,21 +18,8 @@ public class InternalPage extends BasePage {
     public WebElement burgerMenuLogout;
 
 
-    InternalPage(TestContext context) {
+    InternalPageComponentBurgerMenu(TestContext context) {
         super(context);
-    }
-
-    public String getFooterText() {
-        return footer.getText();
-    }
-
-    public ShoppingCartPage openCart() {
-        shoppingCartLink.click();
-        return new ShoppingCartPage();
-    }
-
-    public int getShoppingCartItemsAmount() {
-        return !shoppingCartLink.getText().isEmpty() ? Integer.parseInt(shoppingCartLink.getText()) : 0;
     }
 
     public MainPage goToMainPage() {
@@ -55,3 +36,5 @@ public class InternalPage extends BasePage {
         return new LoginPage(context);
     }
 }
+
+

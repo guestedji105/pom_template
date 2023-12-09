@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
+
+    public InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
+
+
     @FindBy(css = ".error-message-container")
     public WebElement loginMessageContainer;
 
@@ -18,8 +22,10 @@ public class LoginPage extends BasePage {
     @FindBy(css = "#login-button")
     public WebElement loginButton;
 
+
     public LoginPage(TestContext context) {
         super(context);
+        internalPageComponentBurgerMenu = new InternalPageComponentBurgerMenu(context);
     }
 
     private void login(String username, String password) {

@@ -17,7 +17,11 @@ public class LoginTests extends TestBase {
     @Story("Positive login test")
     @Description("Loggin as valid user and checking footer text")
     public void successLoginTest() {
-        assertTrue(new LoginPage(context).loginAsStandardUser().getFooterText().contains("Sauce Labs"));
+        assertTrue(new LoginPage(context)
+                .loginAsStandardUser()
+                .internalPageComponentCart
+                .getFooterText()
+                .contains("Sauce Labs"));
         //assertEquals("https://www.saucedemo.com/inventory.html", context.driver.getCurrentUrl());
     }
 
@@ -27,7 +31,8 @@ public class LoginTests extends TestBase {
     public void emptyLoginTest() {
         assertEquals(
                 "Epic sadface: Username is required",
-                new LoginPage(context).incorrectLoginAs("", "")
+                new LoginPage(context)
+                        .incorrectLoginAs("", "")
         );
         logs.append("Something we want to add from test");
     }

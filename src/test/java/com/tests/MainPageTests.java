@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainPageTests extends TestBase {
+
     @Test
     public void testAddItemsToCart() {
         assertEquals(
@@ -13,6 +14,7 @@ public class MainPageTests extends TestBase {
                 new LoginPage(context)
                         .loginAsStandardUser()
                         .clickAllAddToCartButtons()
+                        .internalPageComponentCart
                         .getShoppingCartItemsAmount()
         );
     }
@@ -36,6 +38,7 @@ public class MainPageTests extends TestBase {
                         .loginAsStandardUser()
                         .goToProductPage("Sauce Labs Fleece Jacket")
                         .addProductToCart()
+                        .internalPageComponentCart
                         .getShoppingCartItemsAmount()
 
         );
@@ -48,7 +51,9 @@ public class MainPageTests extends TestBase {
                 new LoginPage(context)
                         .loginAsStandardUser()
                         .goToProductPage("Sauce Labs Fleece Jacket")
-                        .goToMainPage().numberProductsOnMainPage()
+                        .internalPageComponentBurgerMenu
+                        .goToMainPage()
+                        .numberProductsOnMainPage()
         );
     }
 
@@ -58,6 +63,7 @@ public class MainPageTests extends TestBase {
                 "Username",
                 new LoginPage(context)
                         .loginAsStandardUser()
+                        .internalPageComponentBurgerMenu
                         .goToLoginPage()
                         .getUsernamePlaceholderText()
         );

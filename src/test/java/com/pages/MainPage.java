@@ -6,7 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MainPage extends InternalPage {
+public class MainPage extends BasePage {
+    public InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
+    public InternalPageComponentCart internalPageComponentCart;
+
     @FindBy(css = ".btn_inventory")
     public List<WebElement> addToCartButtons;
 
@@ -15,6 +18,8 @@ public class MainPage extends InternalPage {
 
     public MainPage(TestContext context) {
         super(context);
+        internalPageComponentBurgerMenu = new InternalPageComponentBurgerMenu(context);
+        internalPageComponentCart = new InternalPageComponentCart(context);
     }
 
     public MainPage clickAllAddToCartButtons() {

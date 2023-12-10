@@ -6,6 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class InternalPageComponentCart extends BasePage {
 
+    InternalPageComponentCart(TestContext context) {
+        super(context);
+    }
+
     //TestContext context;
     @FindBy(css = ".footer_copy")
     public WebElement footer;
@@ -14,16 +18,13 @@ public class InternalPageComponentCart extends BasePage {
     public WebElement shoppingCartLink;
 
 
-    InternalPageComponentCart(TestContext context) {
-        super(context);
-    }
-
     public String getFooterText() {
         return footer.getText();
     }
 
     public ShoppingCartPage openCart() {
         shoppingCartLink.click();
+        context.logs.append(" Go to the Shopping Cart page ");
         return new ShoppingCartPage();
     }
 

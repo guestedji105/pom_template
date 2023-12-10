@@ -35,16 +35,27 @@ public class LoginPage extends BasePage {
     }
 
     public MainPage loginAsStandardUser() {
+
         return loginAs(ConfigurationReader.get("standard_login"), ConfigurationReader.get("password"));
     }
 
     public MainPage loginAs(String username, String password) {
         login(username, password);
+        context.logs.append(" Logging in as a standard user ");
+        context.logs.append("\nlogin - ");
+        context.logs.append(username);
+        context.logs.append("\npassword - ");
+        context.logs.append(password);
         return new MainPage(context);
     }
 
     public String incorrectLoginAs(String username, String password) {
         login(username, password);
+        context.logs.append(" Logging in as a incorrect user ");
+        context.logs.append("\n login - ");
+        context.logs.append(username);
+        context.logs.append("\n password - ");
+        context.logs.append(password);
         return loginMessageContainer.getText();
     }
 

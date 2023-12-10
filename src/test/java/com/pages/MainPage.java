@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class MainPage extends BasePage {
-    public InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
-    public InternalPageComponentCart internalPageComponentCart;
+    private InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
+    private InternalPageComponentCart internalPageComponentCart;
 
     @FindBy(css = ".btn_inventory")
     public List<WebElement> addToCartButtons;
@@ -18,12 +18,13 @@ public class MainPage extends BasePage {
 
     public MainPage(TestContext context) {
         super(context);
-        internalPageComponentBurgerMenu = new InternalPageComponentBurgerMenu(context);
-        internalPageComponentCart = new InternalPageComponentCart(context);
+        setInternalPageComponentBurgerMenu(new InternalPageComponentBurgerMenu(context));
+        setInternalPageComponentCart(new InternalPageComponentCart(context));
     }
 
     public MainPage clickAllAddToCartButtons() {
         addToCartButtons.forEach(WebElement::click);
+        context.logs.append("\nThe method adds all items from the page to the cart");
         return this;
     }
 
@@ -34,10 +35,28 @@ public class MainPage extends BasePage {
                 break;
             }
         }
+        context.logs.append("\nThe method goes to the product page - ");
+        context.logs.append(nameProduct);
         return new ProductPage(context);
     }
 
     public int numberProductsOnMainPage() {
         return addToCartButtons.size();
+    }
+
+    public InternalPageComponentBurgerMenu getInternalPageComponentBurgerMenu() {
+        return internalPageComponentBurgerMenu;
+    }
+
+    public void setInternalPageComponentBurgerMenu(InternalPageComponentBurgerMenu internalPageComponentBurgerMenu) {
+        this.internalPageComponentBurgerMenu = internalPageComponentBurgerMenu;
+    }
+
+    public InternalPageComponentCart getInternalPageComponentCart() {
+        return internalPageComponentCart;
+    }
+
+    public void setInternalPageComponentCart(InternalPageComponentCart internalPageComponentCart) {
+        this.internalPageComponentCart = internalPageComponentCart;
     }
 }

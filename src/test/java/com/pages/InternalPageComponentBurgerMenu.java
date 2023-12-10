@@ -7,6 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class InternalPageComponentBurgerMenu extends BasePage {
 
+    InternalPageComponentBurgerMenu(TestContext context) {
+        super(context);
+    }
+
     //TestContext context;
     @FindBy(id = "react-burger-menu-btn")
     public WebElement burgerMenu;
@@ -17,15 +21,11 @@ public class InternalPageComponentBurgerMenu extends BasePage {
     @FindBy(id = "logout_sidebar_link")
     public WebElement burgerMenuLogout;
 
-
-    InternalPageComponentBurgerMenu(TestContext context) {
-        super(context);
-    }
-
     public MainPage goToMainPage() {
         burgerMenu.click();
         context.wait.until(ExpectedConditions.visibilityOf(burgerMenuAllItems));
         burgerMenuAllItems.click();
+        context.logs.append(" Go to the main page ");
         return new MainPage(context);
     }
 
@@ -33,6 +33,7 @@ public class InternalPageComponentBurgerMenu extends BasePage {
         burgerMenu.click();
         context.wait.until(ExpectedConditions.visibilityOf(burgerMenuLogout));
         burgerMenuLogout.click();
+        context.logs.append(" Go to the login page ");
         return new LoginPage(context);
     }
 }

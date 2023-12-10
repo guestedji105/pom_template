@@ -4,7 +4,6 @@ import com.pages.LoginPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
-import jdk.javadoc.doclet.Reporter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +18,11 @@ public class LoginTests extends TestBase {
     public void successLoginTest() {
         assertTrue(new LoginPage(context)
                 .loginAsStandardUser()
-                .internalPageComponentCart
+                .getInternalPageComponentCart()
                 .getFooterText()
                 .contains("Sauce Labs"));
         //assertEquals("https://www.saucedemo.com/inventory.html", context.driver.getCurrentUrl());
+        //attachScreenshot();
     }
 
     @Test
@@ -34,7 +34,7 @@ public class LoginTests extends TestBase {
                 new LoginPage(context)
                         .incorrectLoginAs("", "")
         );
-        logs.append("Something we want to add from test");
+        context.logs.append("Something we want to add from test");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class LoginTests extends TestBase {
     public void blockedUserLoginTest() {
         assertEquals(
                 "Epic sadface",
-                new LoginPage(context).incorrectLoginAs("locked_out_user","secret_sauce")
+                new LoginPage(context).incorrectLoginAs("locked_out_user", "secret_sauce")
         );
     }
 }

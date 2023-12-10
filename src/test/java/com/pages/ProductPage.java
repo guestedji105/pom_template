@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ProductPage extends BasePage {
-    public InternalPageComponentCart internalPageComponentCart;
-    public InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
+    private InternalPageComponentCart internalPageComponentCart;
+    private InternalPageComponentBurgerMenu internalPageComponentBurgerMenu;
 
     ProductPage(TestContext context) {
         super(context);
-        internalPageComponentCart = new InternalPageComponentCart(context);
-        internalPageComponentBurgerMenu = new InternalPageComponentBurgerMenu(context);
+        setInternalPageComponentCart(new InternalPageComponentCart(context));
+        setInternalPageComponentBurgerMenu(new InternalPageComponentBurgerMenu(context));
     }
 
     @FindBy(xpath = "//div[@id='inventory_item_container']//div[@class='inventory_details_price']")
@@ -31,7 +31,24 @@ public class ProductPage extends BasePage {
         } else {
             System.out.println("Product has already been added to cart");
         }
-        return new ProductPage(context);
+        context.logs.append("добавление товара");
+               return new ProductPage(context);
+    }
+
+    public InternalPageComponentBurgerMenu getInternalPageComponentBurgerMenu() {
+        return internalPageComponentBurgerMenu;
+    }
+
+    public void setInternalPageComponentBurgerMenu(InternalPageComponentBurgerMenu internalPageComponentBurgerMenu) {
+        this.internalPageComponentBurgerMenu = internalPageComponentBurgerMenu;
+    }
+
+    public InternalPageComponentCart getInternalPageComponentCart() {
+        return internalPageComponentCart;
+    }
+
+    public void setInternalPageComponentCart(InternalPageComponentCart internalPageComponentCart) {
+        this.internalPageComponentCart = internalPageComponentCart;
     }
 }
 

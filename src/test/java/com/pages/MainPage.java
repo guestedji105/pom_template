@@ -10,6 +10,9 @@ public class MainPage extends InternalPage {
     @FindBy(css = ".btn_inventory")
     public List<WebElement> addToCartButtons;
 
+    @FindBy(css = ".inventory_item_desc")
+    public WebElement firstDescriptionContainer;
+
     public MainPage(TestContext context) {
         super(context);
     }
@@ -17,5 +20,9 @@ public class MainPage extends InternalPage {
     public MainPage clickAllAddToCartButtons() {
         addToCartButtons.forEach(WebElement::click);
         return this;
+    }
+
+    public String getFirstDescription() {
+        return firstDescriptionContainer.getText();
     }
 }

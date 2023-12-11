@@ -7,14 +7,18 @@ import io.qameta.allure.Allure;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 
 public class TestBase {
     TestContext context;
     StringBuilder logs;
+
     @BeforeEach
     public void beforeMethod() {
         context = new TestContext();
@@ -29,6 +33,9 @@ public class TestBase {
     @AfterEach
     public void afterMethod() {
         Allure.addAttachment("Console log: ", String.valueOf(logs));
+        TakesScreenshot takesScreenshot = (TakesScreenshot) context.driver;
+        byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
+        Allure.addAttachment("Скриншот в момент окончания тестов", new ByteArrayInputStream(screenshot));
         if (context.driver != null) {
             context.driver.quit();
         }

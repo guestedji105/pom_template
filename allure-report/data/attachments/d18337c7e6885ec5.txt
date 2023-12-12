@@ -1,1 +1,0 @@
-I logged as a standard user (successfully)

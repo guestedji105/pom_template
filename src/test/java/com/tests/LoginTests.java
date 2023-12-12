@@ -37,7 +37,6 @@ public class LoginTests extends TestBase {
     @Test
     @Story("Negative login test - blocked user")
     @Description("Logging as a blocked user and checking error message")
-    @Disabled("Disabled because I must repair it")
     public void blockedUserLoginTest() {
         assertEquals(
                 "Epic sadface: Sorry, this user has been locked out.",

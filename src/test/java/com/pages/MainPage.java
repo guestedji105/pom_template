@@ -25,4 +25,21 @@ public class MainPage extends InternalPage {
     public String getFirstDescription() {
         return firstDescriptionContainer.getText();
     }
+
+    public MainPage addToCartByPartialName(String namePart) {
+        addToCartButtons.forEach( button -> {
+            if(button.getAttribute("name").contains(namePart))
+                button.click();
+        } );
+        return this;
+    }
+
+    public String getAddToCartButtonTextByPartialName(String namePart) {
+        return addToCartButtons
+                .stream()
+                .filter(button -> button.getAttribute("name").contains(namePart))
+                .findFirst()
+                .map(WebElement::getText)
+                .orElse(null);
+    }
 }

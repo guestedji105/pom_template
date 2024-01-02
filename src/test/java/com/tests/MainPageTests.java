@@ -37,4 +37,14 @@ public class MainPageTests extends TestBase {
         )
                 .doesNotContain("Water-resistant");
     }
+
+    @Test
+    public void testAddToCartByPartialName() {
+        String productName = "jacket";
+        assertEquals("Remove",
+                new LoginPage(context)
+                        .loginAsStandardUser()
+                        .addToCartByPartialName(productName)
+                        .getAddToCartButtonTextByPartialName(productName));
+    }
 }

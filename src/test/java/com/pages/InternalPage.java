@@ -25,6 +25,6 @@ public class InternalPage extends BasePage{
     }
 
     public int getShoppingCartItemsAmount() {
-        return shoppingCartLink.getText().length() > 0 ? Integer.parseInt(shoppingCartLink.getText()) : 0;
+        return !shoppingCartLink.getText().isEmpty() ? Integer.parseInt(shoppingCartLink.getText()) : 0;
     }
 }
